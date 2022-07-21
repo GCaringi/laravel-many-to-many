@@ -5,18 +5,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-
-class Category extends Model
+class Tag extends Model
 {
     use Sluggable;
 
-    //Mass Assignemenet
+    //Mass Assignement
     protected $guarded = [];
 
     public function posts(){
-        return $this->hasMany('App\Post');
+        return $this->belongsToMany('App\Post');
     }
-    /**
+     /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
