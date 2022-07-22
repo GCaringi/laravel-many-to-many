@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-[1200px] m-auto">
         <h1>Create Post</h1>
-        <form action="{{route('admin.posts.store', $post->id)}}" method="POST" class="flex flex-col justify-start items-start">
+        <form action="{{route('admin.posts.store')}}" method="POST" class="flex flex-col justify-start items-start">
             @csrf
             <label for="title">Title</label>
             <input type="text" name="title" id="title" class="@error('title') is-invalid @enderror" value="{{old('title')}}">
@@ -27,6 +27,14 @@
                 @endforeach
             </select>
             @error('category_id')
+                <p class="text-red-500">{{$message}}</p>
+            @enderror
+            @foreach ($tags as $tag)
+                <label for="{{$tag->slug}}">{{$tag->name}}</label>
+                <input type="checkbox" name="tags[]" id="{{$tag->slug}}" value = "{{$tag->id}}" {{in_array($tag->id, old('tags', [])) ? 'checked' : ''}}
+                >
+            @endforeach
+            @error('tags')
                 <p class="text-red-500">{{$message}}</p>
             @enderror
             <label for="published">Pubblicato</label>

@@ -29,6 +29,14 @@
             @error('category_id')
                 <p class="text-red-500">{{$message}}</p>
             @enderror
+            @foreach ($tags as $tag)
+                <label for="{{$tag->slug}}">{{$tag->name}}</label>
+                <input type="checkbox" name="tags[]" id="{{$tag->slug}}" value = "{{$tag->id}}" {{in_array($tag->id, old('tags', $postTags)) ? 'checked' : ''}}
+                >
+            @endforeach
+            @error('tags')
+                <p class="text-red-500">{{$message}}</p>
+            @enderror
                 <label for="published">Pubblicato</label>
                 <input type="checkbox" name="published" id="published" class="@error('published') is-invalid @enderror" {{old('published', $post->published) ? 'checked' : ''}}>
                 @error('published')

@@ -15,6 +15,6 @@
             <button type="submit">Delete</button>
         </form>
         @endforeach
-        <a href="{{route('admin.posts.create')}}">Aggiungi Post</a>
     </div>
+    <a href="{{route('admin.posts.create')}}">Aggiungi Post</a>
 @endsection
